@@ -1,5 +1,28 @@
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: Chakra, Helvetica, Arial, sans-serif;
+}
+
+
+
+@font-face {
+    font-family: "Londrina";
+    src: url('fonts/LondrinaShadow-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Chakra";
+    src: url('fonts/ChakraPetch-Regular.ttf') format('truetype');
+}
+
+
+
+.navbar-brand {
+    font-family: Londrina;
+    font-size: 2rem;
+    color: #1b6ec2;
+}
+.nav-link {
+    color: #1b6ec2;
 }
 
 a, .btn-link {
