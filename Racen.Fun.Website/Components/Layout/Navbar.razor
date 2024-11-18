@@ -1,7 +1,5 @@
-﻿@using Microsoft.AspNetCore.Components;
-
-<nav class="navbar sticky-top navbar-expand-lg" style="z-index: 1050;">
-	@* navbar-light bg-light *@
+﻿
+<nav class="navbar sticky-top navbar-expand-lg">
 	<a class="navbar-brand" href="/">Racen</a>
 	<button class="navbar-toggler" type="button" @onclick="ToggleNavbar" aria-controls="navbarSupportedContent" aria-expanded="@isNavbarCollapsed" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -9,31 +7,14 @@
 	<div class="collapse navbar-collapse @(isNavbarCollapsed ? "show" : "")" id="navbarSupportedContent">
 		<ul class="navbar-nav p-0 navbar-nav-location">
 			<li class="nav-item active">
-                <a class="nav-link" data-bs-toggle="collapse.show" @onclick="() => NavigateTo(main)">Main</a>
+				<a class="nav-link" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})">Main</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse.show" @onclick="() => NavigateTo(game)">Game</a>
+				<a class="nav-link" onclick="document.getElementById('game').scrollIntoView({behavior:'smooth'})">Game</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse.show" @onclick="() => NavigateTo(contact)">Contact</a>
+				<a class="nav-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
             </li>
 		</ul>
 	</div>
 </nav>
-
-@code {
-
-
-    [Inject]
-    private NavigationManager NavigationManager { get; set; }
-
-    public string main = "/";
-    public string game = "#game";
-    public string contact = "#contact";
-
-
-    private void NavigateTo(string url)
-    {
-        NavigationManager.NavigateTo(url);
-    }
-}

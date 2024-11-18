@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Racen.Fun.Website.Components.Layout
 {
@@ -12,6 +13,9 @@ namespace Racen.Fun.Website.Components.Layout
 		{
 			isNavbarCollapsed = !isNavbarCollapsed;
 		}
-		
-	}
+
+        
+
+        
+    }
 }

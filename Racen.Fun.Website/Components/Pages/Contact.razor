@@ -1,20 +1,33 @@
 ﻿@using System.ComponentModel.DataAnnotations
 
 <div class="container mt-5" id="contact">
-	<div class="row justify-content-center">
-		<div class="col-md-6">
-			<h4 class="ContactHeader">Register for Alpha Access</h4>
-			<EditForm Model="@contactModel" OnValidSubmit="@HandleValidSubmit">
-				<DataAnnotationsValidator />
-				<ValidationSummary />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h4 class="ContactHeader">Register for Alpha Access</h4>
+            <EditForm Model="@contactModel" OnValidSubmit="@HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-				<div class="form-group d-flex">
-					@* <label class="ContactArticle" for="email">Email address</label> *@
-					<input id="email" type="email" class="form-control input-field" @bind="contactModel.Email" placeholder="Enter your email" />
-					<button type="submit" class="Contact-btn">Send</button>
-				</div>
-				<ValidationMessage For="@(() => contactModel.Email)" />
-			</EditForm>
-		</div>
-	</div>
+                <div class="form-group d-flex">
+                    @* <label class="ContactArticle" for="email">Email address</label> *@
+                    <input id="email" type="email" class="form-control input-field" @bind="contactModel.Email" placeholder="Enter your email" />
+                    <button type="submit" class="Contact-btn">Send</button>
+                </div>
+                <ValidationMessage For="@(() => contactModel.Email)" />
+            </EditForm>
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-success mt-3">@successMessage</div>
+            }
+        </div>
+    </div>
 </div>
+
+<script>
+    function scrollToElement(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>

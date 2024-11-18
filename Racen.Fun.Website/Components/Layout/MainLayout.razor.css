@@ -42,7 +42,7 @@ main {
     height: 100vh;
     overflow-y: scroll;
     text-align: justify;
-    padding: 50px 100px;
+    padding: 0rem;
 }
 
     .scroll-bar::-webkit-scrollbar {

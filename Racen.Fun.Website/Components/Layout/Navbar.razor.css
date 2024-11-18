@@ -3,7 +3,7 @@
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
     backdrop-filter: blur(10px);
-    z-index: 1000;
+    z-index: 1;
 }
 
 .navbar-nav-location {
@@ -70,6 +70,7 @@
     font-size: 1.5rem;
     color: var(--dark);
     transition: transform 0.2s;
+    cursor: pointer;
 }
 
     .nav-link:hover {
