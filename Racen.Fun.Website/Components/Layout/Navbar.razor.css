@@ -1,5 +1,8 @@
 ﻿.navbar {
-    background-color: #2f4454;
+    background-color: rgba(238,238,238,0.8);
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    backdrop-filter: blur(10px);
 }
 
 .navbar-nav-location {
@@ -12,11 +15,49 @@
 
 .navbar-toggler {
     margin-right: 1rem;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    width: 30px;
+    height: 24px;
 }
 
+.navbar-toggler-icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 4px;
+    background-color: var(--dark);
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
+}
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        background-color: var(--dark);
+        border-radius: 2px;
+    }
+
+    .navbar-toggler-icon::before {
+        top: -8px;
+    }
+
+    .navbar-toggler-icon::after {
+        top: 8px;
+    }
+
+
 .navbar-brand {
-    margin-left: 1rem;
-    color: #f2f2f2;
+    margin-left: 1.5rem;
+    color: var(--dark);
+    font-weight: bold;
 }
 
     .navbar-brand:hover {
@@ -26,11 +67,11 @@
 
 .nav-link {
     font-size: 1.5rem;
-    color: #f2f2f2;
+    color: var(--dark);
     transition: transform 0.2s;
 }
 
     .nav-link:hover {
         transform: scale(0.9);
-        color: #376f70;
+        color: var(--light);
     }

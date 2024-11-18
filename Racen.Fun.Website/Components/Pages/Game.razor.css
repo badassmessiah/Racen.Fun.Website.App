@@ -1,0 +1,8 @@
+﻿.GameHeader {
+    font-size: 2.5rem;
+    color: var(--light);
+}
+.GameArticle {
+    font-size: 1.5rem;
+    color: var(--lightest);
+}

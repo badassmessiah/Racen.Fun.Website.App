@@ -2,8 +2,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: #2f4454;
+    background-color: var(--dark);
 }
+
 
 main {
     flex: 1;
