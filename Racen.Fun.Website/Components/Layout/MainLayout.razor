@@ -1,17 +1,127 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <main>
+	<main>
 		<Navbar />
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+		<article class="content px-4 scroll-bar">
+			@Body
+		</article>
+	</main>
 </div>
 
 <div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
+	An unhandled error has occurred.
+	<a href="" class="reload">Reload</a>
+	<a class="dismiss">🗙</a>
 </div>
+
+
+<ul class="background">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+
+<style>
+	@@keyframes animate {
+		0% {
+			transform: translateY(0) rotate(0deg);
+			opacity: 1;
+			border-radius: 0;
+		}
+
+		100% {
+			transform: translateY(-1000px) rotate(720deg);
+			opacity: 0;
+			border-radius: 50%;
+		}
+	}
+
+	.background {
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		margin: 0;
+		padding: 0;
+		background: #222831;
+		overflow: hidden;
+		z-index: -1;
+	}
+
+		.background li {
+			position: absolute;
+			display: block;
+			list-style: none;
+			width: 20px;
+			height: 20px;
+			background: rgba(255, 255, 255, 0.2);
+			animation: animate 48s linear infinite;
+		}
+
+
+
+
+			.background li:nth-child(0) {
+				left: 61%;
+				width: 137px;
+				height: 137px;
+				bottom: -137px;
+				animation-delay: 1s;
+			}
+
+			.background li:nth-child(1) {
+				left: 52%;
+				width: 149px;
+				height: 149px;
+				bottom: -149px;
+				animation-delay: 3s;
+			}
+
+			.background li:nth-child(2) {
+				left: 9%;
+				width: 135px;
+				height: 135px;
+				bottom: -135px;
+				animation-delay: 6s;
+			}
+
+			.background li:nth-child(3) {
+				left: 17%;
+				width: 118px;
+				height: 118px;
+				bottom: -118px;
+				animation-delay: 4s;
+			}
+
+			.background li:nth-child(4) {
+				left: 14%;
+				width: 131px;
+				height: 131px;
+				bottom: -131px;
+				animation-delay: 8s;
+			}
+
+			.background li:nth-child(5) {
+				left: 34%;
+				width: 71px;
+				height: 71px;
+				bottom: -71px;
+				animation-delay: 2s;
+			}
+
+			.background li:nth-child(6) {
+				left: 66%;
+				width: 175px;
+				height: 175px;
+				bottom: -175px;
+				animation-delay: 10s;
+			}
+</style>

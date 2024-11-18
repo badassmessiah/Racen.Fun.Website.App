@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--dark);
+    background-color: transparent;
 }
 
 
@@ -38,3 +38,19 @@ main {
     }
 
 
+.scroll-bar {
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: justify;
+    padding: 50px 100px;
+}
+
+    .scroll-bar::-webkit-scrollbar {
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+        border-radius: 25px;
+    }
+
+    .scroll-bar::-webkit-scrollbar-thumb {
+        background: linear-gradient(#833ab4, #fd1d1d, #fcb045);
+        border-radius: 25px;
+    }

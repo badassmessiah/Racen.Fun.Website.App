@@ -3,6 +3,7 @@
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
     backdrop-filter: blur(10px);
+    z-index: 1000;
 }
 
 .navbar-nav-location {

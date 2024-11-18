@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNetCore.Components;
 
 <nav class="navbar sticky-top navbar-expand-lg">
 	@* navbar-light bg-light *@
@@ -9,16 +9,13 @@
 	<div class="collapse navbar-collapse @(isNavbarCollapsed ? "show" : "")" id="navbarSupportedContent">
 		<ul class="navbar-nav p-0 navbar-nav-location">
 			<li class="nav-item active">
-				<a class="nav-link" href="#">Main</a>
+				<a class="nav-link" href="/" @onclick="() => HandleAnchorClick()">Main</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Game</a>
+				<a class="nav-link" href="#game" @onclick="() => HandleAnchorClick()">Game</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">About</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Contact</a>
+				<a class="nav-link" href="#contact" @onclick="() => HandleAnchorClick()">Contact</a>
 			</li>
 		</ul>
 	</div>

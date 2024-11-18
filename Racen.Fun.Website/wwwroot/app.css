@@ -1,5 +1,6 @@
 html, body {
     font-family: Chakra, Helvetica, Arial, sans-serif;
+    overflow: hidden;
 }
 
 :root {
@@ -65,3 +66,4 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
