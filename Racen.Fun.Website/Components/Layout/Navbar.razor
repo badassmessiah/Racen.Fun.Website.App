@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Components;
 
-<nav class="navbar sticky-top navbar-expand-lg">
+<nav class="navbar sticky-top navbar-expand-lg" style="z-index: 1050;">
 	@* navbar-light bg-light *@
 	<a class="navbar-brand" href="/">Racen</a>
 	<button class="navbar-toggler" type="button" @onclick="ToggleNavbar" aria-controls="navbarSupportedContent" aria-expanded="@isNavbarCollapsed" aria-label="Toggle navigation">
@@ -9,14 +9,31 @@
 	<div class="collapse navbar-collapse @(isNavbarCollapsed ? "show" : "")" id="navbarSupportedContent">
 		<ul class="navbar-nav p-0 navbar-nav-location">
 			<li class="nav-item active">
-				<a class="nav-link" href="/" @onclick="() => HandleAnchorClick()">Main</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#game" @onclick="() => HandleAnchorClick()">Game</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#contact" @onclick="() => HandleAnchorClick()">Contact</a>
-			</li>
+                <a class="nav-link" data-bs-toggle="collapse.show" @onclick="() => NavigateTo(main)">Main</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse.show" @onclick="() => NavigateTo(game)">Game</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse.show" @onclick="() => NavigateTo(contact)">Contact</a>
+            </li>
 		</ul>
 	</div>
 </nav>
+
+@code {
+
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    public string main = "/";
+    public string game = "#game";
+    public string contact = "#contact";
+
+
+    private void NavigateTo(string url)
+    {
+        NavigationManager.NavigateTo(url);
+    }
+}
