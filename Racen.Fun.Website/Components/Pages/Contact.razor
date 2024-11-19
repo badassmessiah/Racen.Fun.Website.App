@@ -7,13 +7,31 @@
             <EditForm Model="@contactModel" OnValidSubmit="@HandleValidSubmit">
                 <DataAnnotationsValidator />
                 <ValidationSummary />
+                
+                <div class="form-group d-flex">
+                    <div class="form-group flex-fill">
+                        <input id="name" type="text" class="form-control input-field" @bind="contactModel.Name" placeholder="Enter your name" />
+                        <ValidationMessage For="@(() => contactModel.Name)" />
+                    </div>
+                    <div class="form-group flex-fill">
+                        <select id="country" class="form-control input-field selectpicker" @bind="contactModel.Country" data-live-search="true">
+                            <option value="">Select your country</option>
+                            @foreach (var country in countries)
+                            {
+                                <option value="@country.Code">@country.Name</option>
+                            }
+                        </select>
+                        <ValidationMessage For="@(() => contactModel.Country)" />
+                    </div>
+                </div>
 
                 <div class="form-group d-flex">
+                    <ValidationMessage For="@(() => contactModel.Email)" />
                     @* <label class="ContactArticle" for="email">Email address</label> *@
                     <input id="email" type="email" class="form-control input-field" @bind="contactModel.Email" placeholder="Enter your email" />
                     <button type="submit" class="Contact-btn">Send</button>
                 </div>
-                <ValidationMessage For="@(() => contactModel.Email)" />
+                
             </EditForm>
             @if (!string.IsNullOrEmpty(successMessage))
             {
