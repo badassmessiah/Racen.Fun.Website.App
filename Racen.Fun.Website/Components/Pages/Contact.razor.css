@@ -12,25 +12,37 @@
 .form-group {
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem; /* Add padding to maintain spacing */
+}
+
+
+.form-group.d-flex {
+    display: flex;
+    gap: 1rem; 
+    margin-bottom: 1rem; 
+}
+
+.form-group.d-flex .flex-fill {
+    flex: 1; 
 }
 
 .form-control.input-field {
+    
     border-bottom-left-radius: 0rem;
     border-bottom-right-radius: 0rem;
-    padding: 0.5rem; /* Add padding */
-    font-size: 1rem; /* Set font size */
-    border: 1px solid var(--light); /* Add border */
-    background-color: var(--dark); /* Set background color */
-    color: var(--light); /* Set text color */
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid var(--light);
+    background-color: var(--dark);
+    color: var(--light);
 }
 
-
+.form-group {
+    margin-bottom: 1rem; 
+}
 
 .selectpicker{
     border-radius: 0 !important;
 }
-
 
 .Contact-btn {
     background-color: var(--light);
@@ -45,8 +57,36 @@
     margin-bottom: 1rem;
     width: auto;
 }
-    .Contact-btn:hover {
-        background-color: var(--dark);
-        color: var(--light);
-        width: auto;
-    }
+
+.Contact-btn:hover {
+    background-color: var(--dark);
+    color: var(--light);
+    width: auto;
+}
+.social-links {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.social-links p {
+    color: var(--lightest);
+    font-size: 1.2rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--light);
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.social-links a:hover {
+    color: var(--lightest);
+}
+
+.social-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
