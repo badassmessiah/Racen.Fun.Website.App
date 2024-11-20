@@ -15,6 +15,7 @@ namespace Racen.Fun.Website.Data
 
         }
 
-        public DbSet<ContactModel> ContactModel { get; set; }
+        public DbSet<ContactModels> ContactModels { get; set; }
+
     }
 }

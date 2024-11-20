@@ -13,50 +13,84 @@ namespace Racen.Fun.Website.Components.Pages
 {
     public partial class Contact
     {
-        private ContactModel contactModel = new ContactModel();
-        private string successMessage;
+        private string alertClass = "alert-success";
+        private int totalCount = 0;
+        private int maxCount = 10000;
+        private bool isFormDisabled = false;
+        private ContactModels contactModel = new ContactModels();
+        private string? successMessage;
         private List<Country> countries = new List<Country>();
-        [Inject] private IJSRuntime JS { get; set; }
-        [Inject] private DbService DbService { get; set; }
-        protected override void OnInitialized()
+        [Inject] private IJSRuntime? JS { get; set; }
+        [Inject] private DbService? DbService { get; set; }
+        protected override async Task OnInitializedAsync()
         {
+            if (DbService != null)
+            {
+                totalCount = await DbService.GetTotalCountAsync();
+                if (totalCount >= maxCount)
+                {
+                    isFormDisabled = true;
+                }
+            }
             // Load countries from Configuration
             var countriesJsonPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "countries", "Countries.json");
             var countriesJson = File.ReadAllText(countriesJsonPath);
-            countries = JsonSerializer.Deserialize<List<Country>>(countriesJson);
+            countries = JsonSerializer.Deserialize<List<Country>>(countriesJson) ?? new List<Country>();
         }
 
         private async Task HandleValidSubmit()
         {
-            try
+            if (DbService != null)
             {
+                totalCount = await DbService.GetTotalCountAsync();
+                if (totalCount >= maxCount)
+                {
+                    successMessage = "Registration limit reached.";
+                    alertClass = "alert-warning";
+                    isFormDisabled = true;
+                    return;
+                }
+
+                bool isEmailRegistered = await DbService.IsEmailRegisteredAsync(contactModel.Email);
+                if (isEmailRegistered)
+                {
+                    successMessage = "This email is already registered.";
+                    alertClass = "alert-warning";
+                    return;
+                }
+
+                // Assign a new ID and set the country code
                 contactModel.Id = Guid.NewGuid().ToString();
+                var selectedCountry = countries.FirstOrDefault(c => c.Name == contactModel.CountryName);
+                if (selectedCountry != null)
+                {
+                    contactModel.CountryCode = selectedCountry.Code;
+                }
+
+                // Save the new contact
                 await DbService.CreateNewContactAsync(contactModel);
                 successMessage = "Thank you for registering!";
+                alertClass = "alert-success";
+                // Optionally update the count and check again
+                totalCount = await DbService.GetTotalCountAsync();
+                if (totalCount >= maxCount)
+                {
+                    isFormDisabled = true;
+                }
 
-                await Task.Delay(2000);
-                await JS.InvokeVoidAsync("scrollToElement", "main");
+                // Scroll to the main element
+                if (JS != null)
+                {
+                    await JS.InvokeVoidAsync("scrollToElement", "main");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                successMessage = "An error occurred. Please try again later.";
+                successMessage = "Something went wrong. Please try again later.";
+                alertClass = "alert-danger";
             }
         }
 
 
-        public class ContactModel
-        {
-            [Key]
-            public string Id { get; set; }
-            [Required(ErrorMessage = "Name is required.")]
-            public string Name { get; set; }
-
-            [Required(ErrorMessage = "Country is required.")]
-            public string Country { get; set; }
-
-            [Required(ErrorMessage = "Email is required.")]
-            [EmailAddress(ErrorMessage = "Invalid email address.")]
-            public string Email { get; set; }
-        }
     }
 }

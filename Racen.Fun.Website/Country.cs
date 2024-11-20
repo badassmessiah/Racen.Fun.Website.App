@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Racen.Fun.Website
@@ -6,7 +7,7 @@ namespace Racen.Fun.Website
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
-        
+
         [JsonPropertyName("code")]
         public string Code { get; set; }
     }

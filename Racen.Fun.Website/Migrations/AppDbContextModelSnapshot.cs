@@ -16,12 +16,16 @@ namespace Racen.Fun.Website.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
 
-            modelBuilder.Entity("Racen.Fun.Website.Components.Pages.Contact+ContactModel", b =>
+            modelBuilder.Entity("Racen.Fun.Website.ContactModels", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Country")
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CountryName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
