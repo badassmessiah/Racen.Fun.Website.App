@@ -6,28 +6,28 @@
             <h4 class="ContactHeader">Register for Alpha Access</h4>
             <EditForm Model="@contactModel" OnValidSubmit="@HandleValidSubmit">
                 <DataAnnotationsValidator />
-                <ValidationSummary />
-                
+                @* <ValidationSummary /> *@
+
                 <div class="form-group d-flex">
                     <div class="form-group flex-fill">
-                        <input id="name" type="text" class="form-control input-field" @bind="contactModel.Name" placeholder="Enter your name" />
                         <ValidationMessage For="@(() => contactModel.Name)" />
+                        <input id="name" type="text" class="form-control input-field" @bind="contactModel.Name"
+                            placeholder="Enter your name" />
+
                     </div>
                     <div class="form-group flex-fill">
-                        <select id="country" class="form-control input-field selectpicker" @bind="contactModel.Country" data-live-search="true">
+                        <ValidationMessage For="@(() => contactModel.Country)" />
+                        <select id="country" class="form-control input-field selectpicker" @bind="contactModel.Country"
+                            data-live-search="true">
                             <option value="">Select your country</option>
                             @foreach (var country in countries)
                             {
                                 <option value="@country.Code">@country.Name</option>
                             }
                         </select>
-                        <ValidationMessage For="@(() => contactModel.Country)" />
-                    </div>
-                </div>
 
-                <div class="form-group d-flex">
+                    </div>
                     <ValidationMessage For="@(() => contactModel.Email)" />
-                    @* <label class="ContactArticle" for="email">Email address</label> *@
                     <input id="email" type="email" class="form-control input-field" @bind="contactModel.Email" placeholder="Enter your email" />
                     <button type="submit" class="Contact-btn">Send</button>
                 </div>

@@ -9,10 +9,10 @@
     color: var(--lightest);
 }
 
-.form-group{
+.form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem; /* Add padding to maintain spacing */
 }
 
 .form-control.input-field {
@@ -23,7 +23,12 @@
     border: 1px solid var(--light); /* Add border */
     background-color: var(--dark); /* Set background color */
     color: var(--light); /* Set text color */
-    margin-bottom: 0rem; /* Add margin */
+}
+
+
+
+.selectpicker{
+    border-radius: 0 !important;
 }
 
 
