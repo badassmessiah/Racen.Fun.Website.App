@@ -1,0 +1,28 @@
+.PaperHeader {
+    font-size: 2.5rem;
+    color: var(--light);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.PaperSubHeader {
+    font-size: 2rem;
+    color: var(--light);
+    margin-top: 1rem;
+}
+
+.PaperArticle {
+    font-size: 1.5rem;
+    color: var(--lightest);
+    margin-bottom: 1rem;
+}
+
+.PaperList {
+    font-size: 1.5rem;
+    color: var(--lightest);
+    margin-left: 1.5rem;
+}
+
+.PaperListItem {
+    margin-bottom: 0.5rem;
+}
