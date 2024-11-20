@@ -10,18 +10,18 @@ namespace Racen.Fun.Website
     public class ContactModels
     {
         [Key]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [Required(ErrorMessage = "Name is required.")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required(ErrorMessage = "Country is required.")]
-        public string CountryName { get; set; }
+        public string? CountryName { get; set; }
 
-        public string CountryCode { get; set; }
+        public string? CountryCode { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Invalid email address.")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 }

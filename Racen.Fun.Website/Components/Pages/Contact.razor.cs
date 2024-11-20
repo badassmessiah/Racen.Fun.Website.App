@@ -51,6 +51,13 @@ namespace Racen.Fun.Website.Components.Pages
                     return;
                 }
 
+                if (string.IsNullOrEmpty(contactModel.Email))
+                {
+                    successMessage = "Email is required.";
+                    alertClass = "alert-warning";
+                    return;
+                }
+
                 bool isEmailRegistered = await DbService.IsEmailRegisteredAsync(contactModel.Email);
                 if (isEmailRegistered)
                 {
@@ -79,10 +86,10 @@ namespace Racen.Fun.Website.Components.Pages
                 }
 
                 // Scroll to the main element
-                if (JS != null)
-                {
-                    await JS.InvokeVoidAsync("scrollToElement", "main");
-                }
+                // if (JS != null)
+                // {
+                //     await JS.InvokeVoidAsync("scrollToElement", "main");
+                // }
             }
             else
             {
