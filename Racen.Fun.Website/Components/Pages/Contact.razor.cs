@@ -7,23 +7,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Racen.Fun.Website.Services;
 
 namespace Racen.Fun.Website.Components.Pages
 {
     public partial class Contact
     {
         private ContactModel contactModel = new ContactModel();
-        private string csvFilePath;
         private string successMessage;
         private List<Country> countries = new List<Country>();
         [Inject] private IJSRuntime JS { get; set; }
-
+        [Inject] private DbService DbService { get; set; }
         protected override void OnInitialized()
         {
-            var appSettingsPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
-            csvFilePath = Path.Combine(Path.GetDirectoryName(appSettingsPath), "emails.csv");
-
-            /// Load countries from Configuration
+            // Load countries from Configuration
             var countriesJsonPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "countries", "Countries.json");
             var countriesJson = File.ReadAllText(countriesJsonPath);
             countries = JsonSerializer.Deserialize<List<Country>>(countriesJson);
@@ -31,31 +28,26 @@ namespace Racen.Fun.Website.Components.Pages
 
         private async Task HandleValidSubmit()
         {
-            SaveEmailToCsv(contactModel.Email);
-            successMessage = "Thank you for registering!";
-            Console.WriteLine("Form submitted successfully!");
-
-            await Task.Delay(2000);
-            await JS.InvokeVoidAsync("scrollToElement", "main");
-        }
-
-        private void SaveEmailToCsv(string email)
-        {
             try
             {
-                using (var writer = new StreamWriter(csvFilePath, append: true))
-                {
-                    writer.WriteLine(email);
-                }
+                contactModel.Id = Guid.NewGuid().ToString();
+                await DbService.CreateNewContactAsync(contactModel);
+                successMessage = "Thank you for registering!";
+
+                await Task.Delay(2000);
+                await JS.InvokeVoidAsync("scrollToElement", "main");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while saving the email: {ex.Message}");
+                successMessage = "An error occurred. Please try again later.";
             }
         }
 
+
         public class ContactModel
         {
+            [Key]
+            public string Id { get; set; }
             [Required(ErrorMessage = "Name is required.")]
             public string Name { get; set; }
 

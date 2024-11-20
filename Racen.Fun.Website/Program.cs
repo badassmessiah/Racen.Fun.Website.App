@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Racen.Fun.Website.Components;
+using Racen.Fun.Website.Data;
+using Racen.Fun.Website.Services;
 
 namespace Racen.Fun.Website
 {
@@ -12,9 +15,14 @@ namespace Racen.Fun.Website
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddScoped<DbService>();
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Configure the HTTP request pipeline
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
