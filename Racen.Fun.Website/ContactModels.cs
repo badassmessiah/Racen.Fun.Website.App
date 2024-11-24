@@ -23,5 +23,11 @@ namespace Racen.Fun.Website
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Invalid email address.")]
         public string? Email { get; set; }
+
+        [Required(ErrorMessage = "Wallet address is required.")]
+        public string? WalletAddress { get; set; }
+
+        [Required(ErrorMessage = "Tier is required.")]
+        public Tiers? Tier { get; set; }
     }
 }

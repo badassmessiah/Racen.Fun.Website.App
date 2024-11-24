@@ -1,0 +1,42 @@
+/* TiersExplained.razor.css */
+
+.TiersHeader {
+    font-size: 2.5rem;
+    color: var(--light);
+}
+
+.TiersText {
+    font-size: 1.5rem;
+    color: var(--lightest);
+}
+
+.TiersImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.TiersList {
+    list-style: none;
+    padding-left: 0;
+}
+
+.TiersList > li {
+    margin-bottom: 1rem;
+}
+
+.TierName {
+    font-weight: bold;
+    color: var(--light);
+}
+
+.TierDetails {
+    list-style: disc;
+    margin-left: 1.5rem;
+    color: var(--lightest);
+    font-size: 1.2rem;
+}
+
+.TierDetails li {
+    margin-bottom: 0.5rem;
+}

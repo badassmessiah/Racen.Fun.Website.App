@@ -15,7 +15,7 @@ namespace Racen.Fun.Website.Components.Pages
     {
         private string alertClass = "alert-success";
         private int totalCount = 0;
-        private int maxCount = 10000;
+        private int maxCount = 50000;
         private bool isFormDisabled = false;
         private ContactModels contactModel = new ContactModels();
         private string? successMessage;
