@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Racen.Fun.Website.Components;
 using Racen.Fun.Website.Data;
 using Racen.Fun.Website.Services;
+using System.Net;
 
 namespace Racen.Fun.Website
 {
@@ -24,10 +25,7 @@ namespace Racen.Fun.Website
             {
                 builder.WebHost.ConfigureKestrel(options =>
                 {
-                    options.ListenLocalhost(5050, listenOptions =>
-                    {
-                        listenOptions.UseHttps();
-                    });
+                    options.ListenLocalhost(5050);
                 });
             }
 
@@ -41,7 +39,14 @@ namespace Racen.Fun.Website
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<AppDbContext>();
+                context.Database.Migrate();
+            }
+
+            //app.UseHttpsRedirection();
 
             app.UseStaticFiles();
             app.UseAntiforgery();
