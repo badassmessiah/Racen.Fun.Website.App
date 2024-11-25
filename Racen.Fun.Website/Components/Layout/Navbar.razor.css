@@ -58,7 +58,6 @@
 .navbar-brand {
     margin-left: 1.5rem;
     color: var(--dark);
-    font-weight: bold;
 }
 
     .navbar-brand:hover {
@@ -76,4 +75,9 @@
     .nav-link:hover {
         transform: scale(0.9);
         color: var(--light);
+    }
+
+    .navbar-logo{
+        width: 8rem;
+        height: auto;
     }
